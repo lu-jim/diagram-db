@@ -11,7 +11,11 @@ CREATE TABLE "medical_histories" (
   "patient_id" int,
   "status" varchar,
   PRIMARY KEY ("id"),
-  CONSTRAINT "FK_medical_histories.patient_id"
-    FOREIGN KEY ("patient_id")
-      REFERENCES "patients"("id")
+  CONSTRAINT "FK_medical_histories.patient_id" FOREIGN KEY ("patient_id") REFERENCES "patients"("id")
+);
+CREATE TABLE "treatments" (
+  "id" int,
+  "type" varchar,
+  "name" varchar,
+  PRIMARY KEY ("id")
 );
