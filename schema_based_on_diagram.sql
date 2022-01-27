@@ -39,3 +39,9 @@ CREATE TABLE "invoice_items" (
     FOREIGN KEY ("invoice_id")
       REFERENCES "invoices"("id")
 );
+);
+CREATE TABLE "diagnosis" (
+    treatment_id int REFERENCES treatments NOT NULL,
+    history_id int REFERENCES medical_histories NOT NULL,
+    PRIMARY KEY(treatment_id,  history_id)
+);
