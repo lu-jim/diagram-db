@@ -27,3 +27,15 @@ CREATE TABLE "invoices" (
   "medical_history_id" int,
   PRIMARY KEY ("id")
 );
+CREATE TABLE "invoice_items" (
+  "id" int,
+  "unit_price" decimal,
+  "quantity" int,
+  "total_price" decimal,
+  "invoice_id" int,
+  "treatment_id" int,
+  PRIMARY KEY ("id"),
+  CONSTRAINT "FK_invoice_items.invoice_id"
+    FOREIGN KEY ("invoice_id")
+      REFERENCES "invoices"("id")
+);
