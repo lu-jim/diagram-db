@@ -13,6 +13,7 @@ CREATE TABLE "medical_histories" (
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_medical_histories.patient_id" FOREIGN KEY ("patient_id") REFERENCES "patients"("id")
 );
+CREATE INDEX ON "medical_histories" (patient_id);
 CREATE TABLE "treatments" (
   "id" int,
   "type" varchar,
@@ -39,9 +40,11 @@ CREATE TABLE "invoice_items" (
     FOREIGN KEY ("invoice_id")
       REFERENCES "invoices"("id")
 );
-);
+CREATE INDEX ON "invoice_items" (invoice_id);
 CREATE TABLE "diagnosis" (
     treatment_id int REFERENCES treatments NOT NULL,
     history_id int REFERENCES medical_histories NOT NULL,
     PRIMARY KEY(treatment_id,  history_id)
 );
+CREATE INDEX ON "diagnosis" (treatment_id);
+CREATE INDEX ON "diagnosis" (history_id);
