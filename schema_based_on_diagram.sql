@@ -8,10 +8,10 @@ CREATE TABLE "patients" (
 CREATE TABLE "medical_histories" (
   "id" int,
   "admitted_at" timestamp,
-  "patient_id" int,
+  "patient_id" int REFERENCES patients,
   "status" varchar,
   PRIMARY KEY ("id"),
-  CONSTRAINT "FK_medical_histories.patient_id" FOREIGN KEY ("patient_id") REFERENCES "patients"("id")
+  CONSTRAINT "FK_medical_histories.patient_id" FOREIGN KEY ("patient_id")
 );
 CREATE INDEX ON "medical_histories" (patient_id);
 CREATE TABLE "treatments" (
@@ -33,12 +33,12 @@ CREATE TABLE "invoice_items" (
   "unit_price" decimal,
   "quantity" int,
   "total_price" decimal,
-  "invoice_id" int,
+  "invoice_id" int REFERENCES invoices,
   "treatment_id" int,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_invoice_items.invoice_id"
     FOREIGN KEY ("invoice_id")
-      REFERENCES "invoices"("id")
+
 );
 CREATE INDEX ON "invoice_items" (invoice_id);
 CREATE TABLE "diagnosis" (
